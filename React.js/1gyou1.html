@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // function BlackDog() {
+      //   this.name = "흰둥이";
+      //   return {
+      //     name: "검둥이",
+      //     bark: function () {
+      //       console.log(this); //{name: '검둥이', bark: ƒ}
+      //       console.log(this.name + ": 멍멍");
+      //     },
+      //   };
+      // }
+      // const blackDog = new BlackDog();
+      // blackDog.bark(); //검둥이: 멍멍
+
+      function WhiteDog() {
+        this.name = "흰둥이";
+        return {
+          name: "검둥이",
+          bark: () => {
+            console.log(this); //WhiteDog {name: '흰둥이'}
+            console.log(this.name + ": 멍멍"); //흰둥이: 멍멍
+          },
+        };
+      }
+      const whiteDog = new WhiteDog();
+      whiteDog.bark();
+    </script>
+  </body>
+</html>
