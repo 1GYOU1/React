@@ -7,10 +7,16 @@
 	<script>
         const root = document.getElementById('root');
         const span = React.createElement(
+            //argument
             'span',
+            //property(id, style ... )
             {id:'sexy-span', style: {color: 'red'} },
             "Hello I'm a span"
         );
         ReactDOM.render(span, root);
+
+        /*
+            React.js = javascript -> HTML 로 돌아가는 형식
+        */
 	</script>
 </html>
