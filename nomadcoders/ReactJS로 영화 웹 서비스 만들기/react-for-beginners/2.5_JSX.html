@@ -4,28 +4,35 @@
 	</body>
 	<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script><!--React Js-->
 	<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script><!--React DOM-->
-	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script><!--bable-->
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script><!--babeㅣ-->
+	<!--JSX 문법 사용하기 위해 babel 사용-->
 	<script type="text/babel">
 		const root = document.getElementById('root');
-		// const h3 = React.createElement('h3', 
-		// 	{
-		// 		id:'title',
-		// 		onMouseEnter: () => console.log('mouse enter'),
-		// 	},
-		 // 'Hello I am a span'
-		// );
+		/* 이전방식
+		const h3 = React.createElement('h3', 
+			{
+				id:'title',
+				onMouseEnter: () => console.log('mouse enter'),
+			},
+		'Hello I am a span'
+		);
+		*/
+		//JSX 문법 사용
 		const Title = (
 			<h3 id="title" onMouseEnter={() => console.log('mouse enter')}>'Hello I am a Title'</h3>
 		)
-		// const btn = React.createElement('button', 
-		// 	{
-		// 		onClick: () => console.log('im clicked'),
-		// 		style: {
-		// 			backgroundColor:'tomato',
-		// 		},
-		// 	}, 
-		// 'Click me'
-		// );
+		/* 이전방식
+		const btn = React.createElement('button', 
+			{
+				onClick: () => console.log('im clicked'),
+				style: {
+					backgroundColor:'tomato',
+				},
+			}, 
+		'Click me'
+		);
+		 */
+		//JSX 문법 사용
 		const Button = (
 			<button style={{
 					backgroundColor: 'tomato',
