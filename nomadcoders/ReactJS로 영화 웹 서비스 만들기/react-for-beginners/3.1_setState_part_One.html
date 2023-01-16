@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+	<body>
+		<div id="root"></div>
+	</body>
+	<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script><!--React Js-->
+	<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script><!--React DOM-->
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script><!--bable-->
+	<script type="text/babel">
+		const root = document.getElementById('root');
+
+		function App () {
+            const [counter, modifier] = React.useState(0);
+            // const x = [1 ,2, 3];
+            // const [a, b, c] = x;
+            // console.log(a)// 1
+			return (
+				<div>
+					<h3>Total Clicks : {counter}</h3>	
+					<button>Click me</button>
+				</div>
+			);
+		};
+        ReactDOM.render(<App/>, root);
+	</script>
+</html>
