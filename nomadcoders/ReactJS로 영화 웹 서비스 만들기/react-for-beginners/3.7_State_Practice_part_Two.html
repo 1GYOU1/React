@@ -16,6 +16,7 @@
 			};
 			const reset = () => setAmount(0);
 			const onFlip = () => {
+				//flip누르면 변화된 값 그대로 가져오므로 onFlip 변수에 reset(); 넣어주기
 				reset()
 				setFlipped((current) => !current);
 							//현재값
@@ -27,12 +28,17 @@
 						<label htmlFor="minutes">Minutes</label>
 						<input 
 											//true면 amount * 60 값 노출, false면 amount(현재값) 노출
+											//만약 flipped 상태면 60으로 곱한 변환된 값 보여주기, 아니라면 state에 있는 값amount(현재값)을 그대로 보여주기
 							value={flipped ? amount * 60 : amount}
 							id="minutes" 
 							placeholder="Minutes" 
 							type="number" 
 							onChange={onChange}
-							//disabled={flipped === true} 아래와 같은 의미
+							/*
+							디폴트 값이 false 라고 정했으므로 Hours는 disabled 되어야함
+							flipped가 false라면, disabled는 true
+							disabled={flipped === true} 아래와 같은 의미
+							*/
 							disabled={flipped}
 						/>
 					</div>
@@ -40,6 +46,7 @@
 						<label htmlFor="hours">Hours</label>
 						<input 
 											//true면 amount(현재값) 노출, false면 Math.round(amount / 60)값 노출
+											//flipped 상태면 state에 있는 값amount(현재값)을 그대로 보여주기, 아니라면 60으로 나눈 변환된 값 보여주기
 							value={flipped ? amount : Math.round(amount / 60)}
 							placeholder="hours" 
 							type="number"
