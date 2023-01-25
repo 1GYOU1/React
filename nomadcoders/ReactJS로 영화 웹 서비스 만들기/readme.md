@@ -96,4 +96,81 @@ ReactDOM.render(<Container/>, root);
 
 - React에서 사용자의 반응에 따라, 화면을 바꿔주기(렌더링) 위해 사용되는 트리거역할을 하는 변수
 
+<br>
+
+----
+
+#5.0 Introduction
+
+## React 시작하기
+
+①node.js 설치
+
+https://nodejs.org
+
+②node.js 버전 확인
+>node -v
+
+③npx 작동 확인
+>npx
+
+>npx create-react-app 새 폴더명
+
+④Visual studio에서 터미널 열기
+
+>cd 새 폴더명
+
+>npm start
+
+<br>
+
+----
+
+#5.1 Tour of CRA
+
+## prop-types 플러그인 설치
+
+prop-types 설치하고 하단 형식으로 타입 검사.
+
+>npm i prop-types
+
+<br>
+
+isRequired를 사용하면 입력해야되는 값이 누락되었을때 콘솔 경고를 띄울 수 있음.
+```js
+import PropTypes from 'prop-types';
+.
+.
+.
+function Button({text}){
+    return (
+        <button>{text}</button>
+    )
+}
+Button.propTypes = {
+    text : PropTypes.string.isRequired,
+}
+.
+.
+.
+```
+
+<br>
+
+## React className
+
+<br>
+
+<img width="544" alt="스크린샷 2023-01-25 오후 2 40 40" src="https://user-images.githubusercontent.com/90018379/214488799-3ec124df-fff1-43f8-8462-b536752de535.png">
+
+<img width="544" alt="스크린샷 2023-01-25 오후 3 03 58" src="https://user-images.githubusercontent.com/90018379/214492148-b517848f-d662-4657-87e0-306da0b72c2b.png">
+
+<br>
+
+React에서는 import한 class가 같은 class여도 자동으로 랜덤으로 지정됨.
+
+<img width="544" alt="스크린샷 2023-01-25 오후 2 39 54" src="https://user-images.githubusercontent.com/90018379/214488788-695c79e3-9ebb-4932-bc75-1f88f7546116.png">
+
+<img width="544" alt="스크린샷 2023-01-25 오후 2 40 17" src="https://user-images.githubusercontent.com/90018379/214488796-3903cb38-eddb-4649-9c83-453ea7550a59.png">
+
 
