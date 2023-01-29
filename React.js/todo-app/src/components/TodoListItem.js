@@ -1,23 +1,28 @@
+import React from 'react';
 import {
-    MdCheckBoxOutlineBlank,
-    MdCheckBox,
-    MdRemoveCircleOutline,
-} from 'react-icons/md';
-import cn from 'classnames'; //classnames를 쓸때는 cn으로 사용하겠다고 선언.
-import './TodoListItem.scss';
-
-const TodoListItem = () => {
-    return (
-        <div className="TodoListItem">
-            <div className="checkbox">
-                <MdCheckBoxOutlineBlank />
-                <div className="text">할 일</div>
-            </div>
-            <div className="remove">
-                <MdRemoveCircleOutline />
-            </div>
-        </div>
-    );
-};
-
-export default TodoListItem;
+        MdCheckBoxOutlineBlank,
+        MdCheckBox,
+        MdRemoveCircleOutline,
+    } from 'react-icons/md';
+    import cn from 'classnames';
+    import './TodoListItem.scss';
+      
+    const TodoListItem = ({ todo, onRemove, onToggle, style }) => {
+      const { id, text, checked } = todo;
+      return (                                      //outline:none
+          <div className='TodoListItem-virtualized' style={style}>
+              <div className="TodoListItem">
+                  <div className={cn('checkbox', { checked })} onClick={() => onToggle(id)}>
+                      {/*https://react-icons.github.io/react-icons/search?q=mdcheckbox*/}
+                      {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
+                      <div className="text">{text}</div>
+                  </div>
+                  <div className="remove" onClick={()=>onRemove(id)}>
+                      <MdRemoveCircleOutline />
+                  </div>
+              </div>
+          </div>
+      );
+  };
+  
+  export default React.memo(TodoListItem);
