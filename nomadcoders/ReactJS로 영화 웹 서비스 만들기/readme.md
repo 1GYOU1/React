@@ -178,14 +178,23 @@ React에서는 import한 class가 같은 class여도 자동으로 랜덤으로 �
 
 ----
 
-## #6.1 useEffect
+## useEffect
 
 useState -> 변경되는 함수 감지할 때마다 render
 
 useEffect -> 불러와질때 한번만 render
 
-API, 많은 양의 데이터 등... 한번만 불러와도 사용할 수 있는 부분에 적용 
+```js
+useEffect(callback, [])
+// API 또는 데이터를 딱 한번만 호출하고 그 뒤로는 호출하기 싫은 경우.
+```
 
+```js
+useEffect(callback, [data])
+// data를 한번 호출하고 그 뒤로는 data가 변화가 감지될 때만 호출.
+```
+
+예시 1) #6.1 useEffect 
 ```js
 import { useState, useEffect } from 'react';
 import Button from './Button';
@@ -194,12 +203,51 @@ import styles from './App.module.css'
 function App() {
   const [counter, setValue] = useState(0);
   const onClick = () => setValue((prev) => prev + 1);
-  console.log("i ren all the time");//onClick 실행될때마다 샐행, render
+  console.log("i run all the time");//onClick 실행될때마다 샐행, render
   useEffect(() => {
     console.log("CALL THE API....");//페이지 불러와질때 한번만 실행
   }, []);
   return (
     <div>
+      <h1>{counter}</h1>
+      <button onClick={onClick}>click me</button>
+      <h1 className={styles.title}>Welcome back!!!</h1>
+      <Button text={"continue"}/>
+    </div>
+  );
+}
+
+export default App;
+```
+
+예시 2) #6.2 Deps
+```js
+import { useState, useEffect } from 'react';
+import Button from './Button';
+import styles from './App.module.css'
+
+function App() {
+  const [counter, setValue] = useState(0);
+  const [keyword, setKeyword] = useState("");
+  const onClick = () => setValue((prev) => prev + 1);
+  const onChange = (event) => setKeyword(event.target.value);
+  useEffect(()=>{
+    console.log("I run only once.");
+  }, []);//초기에 딱 한번 실행
+  useEffect(() => {
+    console.log("I run when 'keyword' changes.");
+  }, [keyword]);//초기 실행 후 keyword의 변화가 감지될때만 실행
+  useEffect(() => {
+    console.log("I run when 'counter' changes.");
+  }, [counter]);//초기 실행 후 counter의 변화가 감지될때만 실행
+  return (
+    <div>
+      <input
+        value={keyword}
+        onChange={onChange}
+        type="text"
+        placeholder='Search here...'
+      />
       <h1>{counter}</h1>
       <button onClick={onClick}>click me</button>
       <h1 className={styles.title}>Welcome back!!!</h1>
