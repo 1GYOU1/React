@@ -100,7 +100,7 @@ ReactDOM.render(<Container/>, root);
 
 ----
 
-#5.0 Introduction
+## #5.0 Introduction
 
 ## React 시작하기
 
@@ -109,34 +109,37 @@ ReactDOM.render(<Container/>, root);
 https://nodejs.org
 
 ②node.js 버전 확인
->node -v
+>$ node -v
 
 ③npx 작동 확인
->npx
+>$ npx
 
->npx create-react-app 새 폴더명
+>$ npx create-react-app 새 폴더명
 
 ④Visual studio에서 터미널 열기
 
->cd 새 폴더명
+>$ cd 새 폴더명
 
->npm start
+>$ npm start
 
 <br>
 
 ----
 
-#5.1 Tour of CRA
+## #5.1 Tour of CRA
 
 ## prop-types 플러그인 설치
 
 prop-types 설치하고 하단 형식으로 타입 검사.
 
->npm i prop-types
+>$ npm i prop-types
 
 <br>
 
 isRequired를 사용하면 입력해야되는 값이 누락되었을때 콘솔 경고를 띄울 수 있음.
+
+react-for-beginners/src/Button.js
+
 ```js
 import PropTypes from 'prop-types';
 .
@@ -172,5 +175,58 @@ React에서는 import한 class가 같은 class여도 자동으로 랜덤으로 �
 <img width="544" alt="스크린샷 2023-01-25 오후 2 39 54" src="https://user-images.githubusercontent.com/90018379/214488788-695c79e3-9ebb-4932-bc75-1f88f7546116.png">
 
 <img width="544" alt="스크린샷 2023-01-25 오후 2 40 17" src="https://user-images.githubusercontent.com/90018379/214488796-3903cb38-eddb-4649-9c83-453ea7550a59.png">
+
+----
+
+## #6.1 useEffect
+
+useState -> 변경되는 함수 감지할 때마다 render
+
+useEffect -> 불러와질때 한번만 render
+
+API, 많은 양의 데이터 등... 한번만 불러와도 사용할 수 있는 부분에 적용 
+
+```js
+import { useState, useEffect } from 'react';
+import Button from './Button';
+import styles from './App.module.css'
+
+function App() {
+  const [counter, setValue] = useState(0);
+  const onClick = () => setValue((prev) => prev + 1);
+  console.log("i ren all the time");//onClick 실행될때마다 샐행, render
+  useEffect(() => {
+    console.log("CALL THE API....");//페이지 불러와질때 한번만 실행
+  }, []);
+  return (
+    <div>
+      <h1>{counter}</h1>
+      <button onClick={onClick}>click me</button>
+      <h1 className={styles.title}>Welcome back!!!</h1>
+      <Button text={"continue"}/>
+    </div>
+  );
+}
+
+export default App;
+```
+
+<br>
+
+2번씩 렌더 진행되는 오류
+
+src/index.js 파일에 <React.StrictMode> -> 제거
+
+```js
+root.render(
+	<React.StrictMode> -> 제거
+  		<App />
+	<React.StrictMode> -> 제거
+);
+```
+
+[React.StrictMode](https://ko.reactjs.org/docs/strict-mode.html)
+
+<br>
 
 
