@@ -277,4 +277,125 @@ root.render(
 
 <br>
 
+---
 
+
+## #7.2 Coin Tracker 
+
+## 하단부분 검토하고 재정리 필요 !@!@@
+
+## API 호출
+
+React 애플리케이션에서 API를 사용하는 방법으로는 크게 Axios(Promise 기반 HTTP 클라이언트) 와 Fetch API(Javascript 내장 Web API)가 있다.
+
+## Fetch
+
+S에서는 fetch()함수를 이용해서 resource를 비동기 요청할 수 있다!
+주로 API를 호출하고 응답 데이터를 받아오는데 사용
+
+fetch()기본 문법은 다음과 같다.
+
+```js
+let promise = fetch(url, [options])
+```
+
+url-접근하고자 하는 URL
+options - 선택 매개변수, mehtod나 header 등을 지정할 수 있다.
+
+기본적인 Fetch 요청 예시
+
+```js
+fetch('url')
+.then(response => response.json())
+.then(response => data.filter(item => item.isRequired));
+```
+```js
+fetch('http://example.com/movies.json')
+  .then((response) => response.json())
+  .then((data) => console.log(data));
+```
+fetch 함수는 API를 사용하여 백엔드 서버와 비동기 요청을 하는 방식 중 하나이다.
+fetch API는 3개의 interfeace를 도입하고 있는데 Headers, Request, Response이다.
+
+1. fetch() 안에는 기본적으로 요청할 url을 넣는다.
+2. get,post,put,delete중 default값으로는 get으로 동작한다.
+3. 해당 주소에 요청을 하고 응답객체(object response)를 받는다.
+4. 첫번째 .then()에서 응답을 받고 .json() 메소드로 파싱한 json()값을 리턴!
+5. 두번째 .then()에서 리턴받은 json값을 받고, 원하는대로 처리가 가능하다!
+
+<br>
+
+## then
+
+자바스크립트에서 함수는 동기함수, 비동기 함수로 나뉜다. 우리가 작성한 코드들은 위에서 아래로 순차적으로 코드가 실행되고 하나의 코드가 종료되지 않는다면 다음 코드로 넘어가지 않는다. 이것이 동기함수이다.
+API를 호출할 때, 사용하는 fetch 함수는 대표적인 비동기함수이다. 그렇기 때문에 API호출하는 과정이 끝나지 않더라도 자동적으로 다음 코드로 넘어간다. 하지만 API로부터 받아온 정보를 사용할 필요가 있는 경우에 .then함수를 쓰는 것이다.
+
+fetch는 비동기적으로 처리되는 함수이고, 처리가 완료되기까지 시간이 오래걸리기 때문에 fetch가 끝나기도 전에 다른 함수가 먼저 실행될 수 있다. (=순서가 섞일 수 있다) 그렇기 때문에 then을 써서 순서를 고정시키는 것이다.
+
+다시 말해, then은 "fetch 다 끝나고나서 이 일을 해줘"의 뜻을 갖는 셈이다.
+
+<br>
+
+## method가 get인 경우
+
+fetch() 함수에서 default method는 get
+
+API명세
+```js
+설명: 유저 정보를 가져온다.
+base url: https://api.google.com
+endpoint: /user/3
+method: get
+응답형태:
+  {
+      "success": boolean,
+      "user": {
+          "name": string,
+          "batch": number
+      }
+  }
+```
+
+```js
+fetch('https://api.google.com/user/3')
+.then(res => res.json())
+.then(res => {
+  if (res.success) {
+      console.log(`${res.user.name}` 님 환영합니다);
+  }
+});
+```
+
+## method가 post인 경우
+
+post인 경우에는 fetch() 함수에 method 정보를 인자로 넘겨주어야 한다.
+
+```js
+fetch('https://api.google.com/user', {
+  method: 'post',
+  body: JSON.stringify({
+      name: "yeri",
+      batch: 1
+  })
+})
+.then(res => res.json())
+.then(res => {
+  if (res.success) {
+      alert("저장 완료");
+  }
+})
+```
+
+[mozilla - Promise](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+
+[mozilla - Fetch](https://developer.mozilla.org/ko/docs/Web/API/Fetch_API/Using_Fetch)
+
+[mozilla - then](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise/then)
+
+[Fetch 함수 blog - 1](https://velog.io/@daybreak/React-Fetch%ED%95%A8%EC%88%98)
+
+[Fetch 함수 blog - 2](daleseo.com/js-window-fetch/)
+
+[React-fetch함수-사용법](https://velog.io/@jjburi/React-fetch%ED%95%A8%EC%88%98-%EC%82%AC%EC%9A%A9%EB%B2%95)
+
+[fetch() 함수 사용법](https://yeri-kim.github.io/posts/fetch/)
