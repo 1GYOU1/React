@@ -282,25 +282,26 @@ root.render(
 
 ## #7.2 Coin Tracker 
 
-## 하단부분 검토하고 재정리 필요 !@!@@
-
 ## API 호출
 
 React 애플리케이션에서 API를 사용하는 방법으로는 크게 Axios(Promise 기반 HTTP 클라이언트) 와 Fetch API(Javascript 내장 Web API)가 있다.
 
+CoinTracker.js 파일에서는 Fetch API 방식으로 사용했다.
+
 ## Fetch
 
-S에서는 fetch()함수를 이용해서 resource를 비동기 요청할 수 있다!
-주로 API를 호출하고 응답 데이터를 받아오는데 사용
+React에서는 fetch()함수를 이용해서 resource를 비동기 요청할 수 있다.
+
+주로 API를 호출하고 응답 데이터를 받아오는데 사용.
 
 fetch()기본 문법은 다음과 같다.
-
 ```js
 let promise = fetch(url, [options])
 ```
 
-url-접근하고자 하는 URL
-options - 선택 매개변수, mehtod나 header 등을 지정할 수 있다.
+`url` - 접근하고자 하는 URL
+
+`options` - 선택 매개변수, mehtod나 header 등을 지정할 수 있다.
 
 기본적인 Fetch 요청 예시
 
@@ -315,6 +316,11 @@ fetch('http://example.com/movies.json')
   .then((data) => console.log(data));
 ```
 fetch 함수는 API를 사용하여 백엔드 서버와 비동기 요청을 하는 방식 중 하나이다.
+
+fetch() 함수는 디폴트로 GET 방식으로 작동하고 GET 방식은 요청 전문을 받지 않기 때문에 옵션 인자가 필요가 없습니다.
+
+대부분의 REST API들은 JSON 형태의 데이터를 응답하기 때문에, 응답(response) 객체는 json() 메서드를 제공
+
 fetch API는 3개의 interfeace를 도입하고 있는데 Headers, Request, Response이다.
 
 1. fetch() 안에는 기본적으로 요청할 url을 넣는다.
@@ -366,6 +372,27 @@ fetch('https://api.google.com/user/3')
 });
 ```
 
+첫 번째 then 함수에 전달된 인자 res는 http 통신 요청과 응답에서 응답의 정보를 담고 있는 객체(Response Object)입니다.  
+
+응답으로 받는 JSON 데이터를 사용하기 위해서는 Response Object 의 json 함수를 호출하고, return 해야합니다. 그러면 두 번째 then 함수에서 응답 body의 데이터를 받을 수 있습니다.
+
+<br>
+
+## method가 get인데 parameter를 전달해야 하는 경우
+
+위의 get 예제에서 3이라는 user id를 path로 넘겨주었습니다. 그런데 path 말고 query string으로 넘겨줘야 할 수도 있습니다. 전달하는 방식 개발자에게 물어보고 진행.
+
+```js
+                                  //이부분 !
+fetch('https://api.google.com/user?id=3')
+  .then(res => res.json())
+  .then(res => {
+    if (res.success) {
+        console.log(`${res.user.name}` 님 환영합니다);
+    }
+  });
+```
+
 ## method가 post인 경우
 
 post인 경우에는 fetch() 함수에 method 정보를 인자로 넘겨주어야 한다.
@@ -386,6 +413,14 @@ fetch('https://api.google.com/user', {
 })
 ```
 
+1. 두 번째 인자에 method와 body를 보내주어야 합니다.
+2. method는 post
+3. body는 JSON형태로 보내기 위해 JSON.stringfy() 함수에 객체를 인자로 전달하여 JSON형태로 변환.
+
+post로 데이터를 보낼 때 JSON.stringfy를 항상 하다보니 axios는 굳이 감싸주지 않고 객체만 작성해도 되는 편리한 점이 있습니다. 이렇듯 axios는 소소하게 편한한 설정을 제공해주고, 요청과 응답에 대한 확장성 있는 기능을 만들 수 있습니다.
+
+호출해야할 api가 get인지, post인지 api 정보를 아는 것은 오로지 api를 만든 개발자에게 문의해야함.
+
 [mozilla - Promise](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
 [mozilla - Fetch](https://developer.mozilla.org/ko/docs/Web/API/Fetch_API/Using_Fetch)
@@ -399,3 +434,8 @@ fetch('https://api.google.com/user', {
 [React-fetch함수-사용법](https://velog.io/@jjburi/React-fetch%ED%95%A8%EC%88%98-%EC%82%AC%EC%9A%A9%EB%B2%95)
 
 [fetch() 함수 사용법](https://yeri-kim.github.io/posts/fetch/)
+
+<br>
+
+---
+
