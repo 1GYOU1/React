@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function PtacticeMovieApp() {
+function PracticeMovieApp() {
     const [loading, setLoading] = useState(true);
     const [movies, setMovies] = useState([]);
     const getMovies = async () => {
@@ -38,4 +38,4 @@ function PtacticeMovieApp() {
       </div>
     );
 }
-export default PtacticeMovieApp;
+export default PracticeMovieApp;
