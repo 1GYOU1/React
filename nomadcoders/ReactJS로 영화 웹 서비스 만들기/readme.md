@@ -439,3 +439,56 @@ post로 데이터를 보낼 때 JSON.stringfy를 항상 하다보니 axios는 �
 
 ---
 
+## #7.3 Movie App part One
+
+[JSON Viewer 크롬 확장팩](https://chrome.google.com/webstore/detail/json-viewer/gbmdgpbipfallnflgajpaliibnhdgobh/related?hl=ko)
+
+상단 크롬 확장팩을 설치하면 API 데이터를 한줄로 나열되어 있는 형식이 아닌 어느정도 정리되어져서 보여짐. 
+
+<br>
+
+then대신에 async-await를 보편적으로 사용.
+
+async, await 사용해서 API 데이터 가져오기
+
+하단 3가지 코드는 모두 같은 데이터를 가져옴.
+```js
+1. fetch, then 사용 예시
+useEffect(() => {
+    fetch(
+          `https://yts.mx/api/v2/list_movies.json?minimum_rating=8.8&sort_by=year`
+    )
+    .then((response) => response.json())
+    .then((json) => {
+        setMovies(json.data.movies);
+        setLoading(false);
+    });
+}, []);
+
+// 2. async, await 사용
+const getMovies = async () => {
+  const response = await fetch(
+    `https://yts.mx/api/v2/list_movies.json?minimum_rating=8.8&sort_by=year`
+  );
+  const json = await response.json();
+  setMovies(json.data.movies);
+  setLoading(false);
+};
+useEffect(() => {
+  getMovies();
+}, []);
+
+// 3. await 연속 사용하여 더 축약하기
+const getMovies = async () => {
+  const json = await (
+    await fetch(
+      `https://yts.mx/api/v2/list_movies.json?minimum_rating=8.8&sort_by=year`
+    )
+  ).json();
+  setMovies(json.data.movies);
+  setLoading(false);
+};
+useEffect(() => {
+  getMovies();
+}, []);
+```
