@@ -439,7 +439,9 @@ post로 데이터를 보낼 때 JSON.stringfy를 항상 하다보니 axios는 �
 
 ---
 
-## #7.3 Movie App part One - API 가져오기
+## #7.3 Movie App part One
+
+## API - async, await 사용
 
 [JSON Viewer 크롬 확장팩](https://chrome.google.com/webstore/detail/json-viewer/gbmdgpbipfallnflgajpaliibnhdgobh/related?hl=ko)
 
