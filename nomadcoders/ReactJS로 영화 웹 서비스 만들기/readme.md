@@ -439,7 +439,7 @@ post로 데이터를 보낼 때 JSON.stringfy를 항상 하다보니 axios는 �
 
 ---
 
-## #7.3 Movie App part One
+## #7.3 Movie App part One - API 가져오기
 
 [JSON Viewer 크롬 확장팩](https://chrome.google.com/webstore/detail/json-viewer/gbmdgpbipfallnflgajpaliibnhdgobh/related?hl=ko)
 
@@ -492,3 +492,21 @@ useEffect(() => {
   getMovies();
 }, []);
 ```
+
+<br>
+
+## 7.4 Movie App part Two
+
+## React Router
+
+예시 - http://localhost:3000/movie/123
+
+해당 url처럼 경로로 진입했을때 페이지 전환되는 방식.
+
+<br>
+
+react-router-dom 설치
+
+>$ cd 파일 경로 진입
+
+>$ npm install react-router-dom

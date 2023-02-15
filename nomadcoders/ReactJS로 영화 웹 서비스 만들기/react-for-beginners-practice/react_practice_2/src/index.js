@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
-import ToDoListpartOne from './ToDoListpartOne';
-import CoinTracker from './CoinTracker';
+// import App from './App';
+// import ToDoListpartOne from './ToDoListpartOne';
+// import CoinTracker from './CoinTracker';
 import PracticeMovieApp from './PracticeMovieApp';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
