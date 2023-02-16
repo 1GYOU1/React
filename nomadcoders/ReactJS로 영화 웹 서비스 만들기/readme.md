@@ -512,3 +512,7 @@ react-router-dom 설치
 >$ cd 파일 경로 진입
 
 >$ npm install react-router-dom
+
+## import 단축키 (macOS)
+
+command + i
