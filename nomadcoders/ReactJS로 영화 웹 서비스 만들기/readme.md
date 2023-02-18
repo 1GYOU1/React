@@ -124,6 +124,12 @@ https://nodejs.org
 
 <br>
 
+## import 단축키
+
+window = crtl + space
+
+macOs = command + i
+
 ----
 
 ## #5.1 Tour of CRA
@@ -497,13 +503,31 @@ useEffect(() => {
 
 <br>
 
-## 7.4 Movie App part Two
+---
+
+## #7.4 Movie App part Two ~ #7.5 React Router
+
+react-practice_3
 
 ## React Router
 
+라우팅이란?
+
+간단하게 생각 하자면 사용자가 요청한 URL에 따라 해당 URL에 맞는 페이지를 보여주는 것.
+
+<br>
+
+리액트 라우터(React Router)
+
+React-Router는 신규 페이지를 불러오지 않는 상황에서 각각의 url에 따라 선택된 데이터를 하나의 페이지에서 렌더링 해주는 라이브러리. 
+
+사용자가 입력한 주소를 감지하는 역할을 하며, 여러 환경에서 동작할 수 있도록 여러 종유의 라우터 컴포넌트를 제공
+
 예시 - http://localhost:3000/movie/123
 
-해당 url처럼 경로로 진입했을때 페이지 전환되는 방식.
+해당 url처럼 경로로 진입했을때 페이지 전환되는 방식 사용하기 위해 react-router-dom 설치해서 사용.
+
+react-router-dom은 여러가지 컴포넌트들의 모음집.
 
 <br>
 
@@ -513,6 +537,218 @@ react-router-dom 설치
 
 >$ npm install react-router-dom
 
-## import 단축키 (macOS)
+<br>
 
-command + i
+1. Router에는 BrowserRouter와 Hash Router 두가지 종류가 있다. BrowserRouter가 일반적인 방식이며, Hash Router는 잘 쓰이지 않는다.(뒤에 #이런게 붙음)
+    - rowserRouter : HTML5를 지원하는 브라우저의 주소를 감지 한다.
+    - HashRouter 해시 주소(http://goddaehee.tistory.com/#test )를 감지 한다.
+
+<br>
+
+2. 버전 6이상에서는 Switch는 쓰이지 않는다. 이제 그역할은 Routes가 대신한다. 또한 Route 태그의 exact 속성도 더이상 쓰이지 않으며, Routes가 알아서 최적의 경로배정을 해주기 때문에 Switch를 썼을 때의 고민을 말끔히 해결해 준다.
+
+3. 한 라우트에서 다른 라우트로 가고 싶을 땐 a태그의 href을 속성이 가장 먼저 생각이 날 것이고, 실제로도 그렇게 코드를 작성하면 이동이 가능하다. 하지만 페이지 전체가 새로고침되기 때문에 리액트의 장점을 깎아먹는다. 따라서 재실행되는 것을 막기 위해 react-router-dom에서 import한 link 태그를 사용하면 된다.
+
+index.js
+```js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import App from './App';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
+);
+```
+
+App.js
+```js
+import { Routes, Route } from "react-router-dom";
+import Home from "./routes/Home";
+import Detail from "./routes/Detail";
+
+function App() {
+    return (
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/movie" element={<Detail />} />
+        </Routes>
+    )
+}
+
+export default App;
+```
+
+## Link
+
+```js
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+                //parent component로 부터 받아오는 properties
+function Movie({ coverImg, title, summary, genres }) {
+  return (
+    <div>
+        {/* img 태그에 alt값 안넣으면 에러 */}
+        <img src={coverImg} alt={title} />
+        <h2>
+          <Link to="/movie">{title}</Link>
+          {/* 클릭하면 http://localhost:3000/movie 페이지로 이동 */}
+        </h2>
+        <p>{summary}</p>
+        <ul>
+            {genres.map((g) => (
+            <li key={g}>{g}</li>
+            ))}
+        </ul>
+    </div>
+  );
+}
+
+Movie.propTypes = {
+  coverImg: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  summary: PropTypes.string.isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+
+export default Movie;
+```
+
+[router 사용하기 참고사이트](https://goddaehee.tistory.com/305)
+
+<br>
+
+## 공식사이트에서의 createBrowserRouter 사용
+
+추가로 더 공부해보기 !@
+
+https://reactrouter.com/en/main/start/overview
+```js
+import React from "react";
+import { createRoot } from "react-dom/client";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+  Link,
+} from "react-router-dom";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: (
+      <div>
+        <h1>Hello World</h1>
+        <Link to="about">About Us</Link>
+      </div>
+    ),
+  },
+  {
+    path: "about",
+    element: <div>About</div>,
+  },
+]);
+
+createRoot(document.getElementById("root")).render(
+  <RouterProvider router={router} />
+);
+```
+
+[router 공식 사이트](https://reactrouter.com/en/main/router-components/browser-router)
+
+<br>
+
+---
+
+## #7.6 Parameters
+
+동적 URL 만들기 (변수로 url 가져오기)
+
+ex) http://localhose:3000/movie/:id값(ex:13132)
+
+## useParams
+
+url에 있는 값을 반환해주는 함수
+
+useParams는 리액트에서 제공하는 Hook으로 동적으로 라우팅을 생성하기 위해 사용.
+
+Route path 와 일치하는 현재 URL에서 동적 매개변수의 키/값 쌍의 개체를 반환.
+
+쇼핑몰 웹사이트를 예를들면 메인 페이지에서 여러개의 값을 렌더링하고, 클릭한것만 렌더링 시키고자 할때 하나하나 다 onclick 이벤트를 사용하기가 번거로운데, useParams 로 해결 가능하다.
+
+
+1. App.js - `<Detail />`에서 id값을 변수로 받겠다고 선언.
+```js
+import { Routes, Route } from "react-router-dom";
+import Home from "./routes/Home";
+import Detail from "./routes/Detail";
+
+function App() {
+    return (
+        <Routes>
+            <Route path="/" element={<Home />} />{/*http://localhost:3000/*/}
+            <Route path="/movie/:id" element={<Detail />} />{/*http://localhost:3000/movie*/}
+        </Routes>
+    )
+}
+
+export default App;
+```
+2. Movie.js - API로 부터 가져올 id값 propertie 추가해주기
+```js
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+                //parent component로 부터 받아오는 properties
+function Movie({ id, coverImg, title, summary, genres }) {
+  return (
+    <div>
+        {/* img 태그에 alt값 안넣으면 에러 */}
+        <img src={coverImg} alt={title} />
+        <h2>
+          <Link to={`/movie/${id}`}>{title}</Link>
+        </h2>
+        <p>{summary}</p>
+        <ul>
+            {genres.map((g) => (
+            <li key={g}>{g}</li>
+            ))}
+        </ul>
+    </div>
+  );
+}
+
+Movie.propTypes = {
+    id: PropTypes.number.isRequired,
+    coverImg: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    summary: PropTypes.string.isRequired,
+    genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+
+export default Movie;
+```
+3. Detail.js - `const { id } = useParams`로 변수 id 값 넘겨주기
+```js
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+
+function Detail() {
+    const { id } = useParams();
+    const getMovie = async () => {
+        const json = await (
+        await fetch(`https://yts.mx/api/v2/movie_details.json?movie_id=${id}`)
+        ).json();
+        console.log(json);
+    };
+    useEffect(() => {
+        getMovie();
+    }, []);
+    return <h1>Detail</h1>;
+  }
+  export default Detail;
+```
+
+---
