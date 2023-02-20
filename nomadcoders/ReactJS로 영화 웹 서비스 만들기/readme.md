@@ -751,4 +751,12 @@ function Detail() {
   export default Detail;
 ```
 
+<br>
+
 ---
+
+## #7.7 Publishing
+
+```js
+
+```
