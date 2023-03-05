@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:routes\\users\\$id.jsx?browser"],
+  "sourcesContent": ["import { json } from '@remix-run/node';\r\nimport { useLoaderData } from '@remix-run/react';\r\nimport { getUser } from '../../lib/api';\r\n\r\nexport default function User() {\r\n  const user = useLoaderData();\r\n\r\n  return (\r\n    <div>\r\n      <h2>{user.username}</h2>\r\n      <code style={{ whiteSpace: 'pre' }}>{JSON.stringify(user, null, 2)}</code>\r\n    </div>\r\n  );\r\n}"],
+  "mappings": ";;;;;;;;;AASM;AALS,SAAR,OAAwB;AAC7B,QAAM,OAAO,cAAc;AAE3B,SACE,mDAAC,SACC;AAAA,uDAAC,QAAI,eAAK,YAAV;AAAA;AAAA;AAAA;AAAA,WAAmB;AAAA,IACnB,mDAAC,UAAK,OAAO,EAAE,YAAY,MAAM,GAAI,eAAK,UAAU,MAAM,MAAM,CAAC,KAAjE;AAAA;AAAA;AAAA;AAAA,WAAmE;AAAA,OAFrE;AAAA;AAAA;AAAA;AAAA,SAGA;AAEJ;",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:routes\\index.jsx?browser"],
+  "sourcesContent": ["import { Link } from '@remix-run/react';\r\n\r\nexport default function Index() {\r\n  return (\r\n    <div style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.4' }}>\r\n      <h1>Welcome to Remix</h1>\r\n      <ul>\r\n        <li>\r\n          <Link to=\"/about\">about</Link>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n  );\r\n}"],
+  "mappings": ";;;;;;;;;AAKM;AAHS,SAAR,QAAyB;AAC9B,SACE,mDAAC,SAAI,OAAO,EAAE,YAAY,yBAAyB,YAAY,MAAM,GACnE;AAAA,uDAAC,QAAG,gCAAJ;AAAA;AAAA;AAAA;AAAA,WAAoB;AAAA,IACpB,mDAAC,QACC,6DAAC,QACC,6DAAC,QAAK,IAAG,UAAS,qBAAlB;AAAA;AAAA;AAAA;AAAA,WAAuB,KADzB;AAAA;AAAA;AAAA;AAAA,WAEA,KAHF;AAAA;AAAA;AAAA;AAAA,WAIA;AAAA,OANF;AAAA;AAAA;AAAA;AAAA,SAOA;AAEJ;",
+  "names": []
+}

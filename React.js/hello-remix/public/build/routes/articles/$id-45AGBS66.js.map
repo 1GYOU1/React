@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:routes\\articles\\$id.jsx?browser"],
+  "sourcesContent": ["import { useParams } from '@remix-run/react';\r\n\r\nexport default function Article() {\r\n  const params = useParams();\r\n  return <div>\uAC8C\uC2DC\uAE00 ID: {params.id}</div>;\r\n}"],
+  "mappings": ";;;;;;;;;AAIS;AAFM,SAAR,UAA2B;AAChC,QAAM,SAAS,UAAU;AACzB,SAAO,mDAAC,SAAI;AAAA;AAAA,IAAS,OAAO;AAAA,OAArB;AAAA;AAAA;AAAA;AAAA,SAAwB;AACjC;",
+  "names": []
+}

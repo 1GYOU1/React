@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:routes\\articles.jsx?browser"],
+  "sourcesContent": ["import { Link, Outlet } from '@remix-run/react';\r\n\r\nexport default function Articles() {\r\n  return (\r\n    <div>\r\n      <Outlet />\r\n      <hr />\r\n      <ul>\r\n        <li>\r\n          <Link to=\"/articles/1\">\uAC8C\uC2DC\uAE00 1</Link>\r\n        </li>\r\n        <li>\r\n          <Link to=\"/articles/2\">\uAC8C\uC2DC\uAE00 2</Link>\r\n        </li>\r\n        <li>\r\n          <Link to=\"/articles/3\">\uAC8C\uC2DC\uAE00 3</Link>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n  );\r\n}"],
+  "mappings": ";;;;;;;;;;AAKM;AAHS,SAAR,WAA4B;AACjC,SACE,mDAAC,SACC;AAAA,uDAAC,YAAD;AAAA;AAAA;AAAA;AAAA,WAAQ;AAAA,IACR,mDAAC,UAAD;AAAA;AAAA;AAAA;AAAA,WAAI;AAAA,IACJ,mDAAC,QACC;AAAA,yDAAC,QACC,6DAAC,QAAK,IAAG,eAAc,oCAAvB;AAAA;AAAA;AAAA;AAAA,aAA4B,KAD9B;AAAA;AAAA;AAAA;AAAA,aAEA;AAAA,MACA,mDAAC,QACC,6DAAC,QAAK,IAAG,eAAc,oCAAvB;AAAA;AAAA;AAAA;AAAA,aAA4B,KAD9B;AAAA;AAAA;AAAA;AAAA,aAEA;AAAA,MACA,mDAAC,QACC,6DAAC,QAAK,IAAG,eAAc,oCAAvB;AAAA;AAAA;AAAA;AAAA,aAA4B,KAD9B;AAAA;AAAA;AAAA;AAAA,aAEA;AAAA,SATF;AAAA;AAAA;AAAA;AAAA,WAUA;AAAA,OAbF;AAAA;AAAA;AAAA;AAAA,SAcA;AAEJ;",
+  "names": []
+}

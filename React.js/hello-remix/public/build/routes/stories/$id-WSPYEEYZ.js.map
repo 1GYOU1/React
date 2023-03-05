@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:routes\\stories\\$id.jsx?browser"],
+  "sourcesContent": ["import { json } from '@remix-run/node';\r\nimport { useLoaderData } from '@remix-run/react';\r\nimport { getStory } from '../../lib/api';\r\n\r\nexport default function Story() {\r\n  const story = useLoaderData();\r\n  return (\r\n    <div>\r\n      <h1>{story.title}</h1>\r\n      <p>{story.body}</p>\r\n    </div>\r\n  );\r\n}"],
+  "mappings": ";;;;;;;;;AAQM;AAJS,SAAR,QAAyB;AAC9B,QAAM,QAAQ,cAAc;AAC5B,SACE,mDAAC,SACC;AAAA,uDAAC,QAAI,gBAAM,SAAX;AAAA;AAAA;AAAA;AAAA,WAAiB;AAAA,IACjB,mDAAC,OAAG,gBAAM,QAAV;AAAA;AAAA;AAAA;AAAA,WAAe;AAAA,OAFjB;AAAA;AAAA;AAAA;AAAA,SAGA;AAEJ;",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:routes\\users\\index.jsx?browser"],
+  "sourcesContent": ["import { json } from '@remix-run/node';\r\nimport { Link, useLoaderData } from '@remix-run/react';\r\nimport { getUsers } from '../../lib/api';\r\n\r\nexport default function Users() {\r\n    // \uBC18\uD658\uD55C \uB370\uC774\uD130\uB294 \uB77C\uC6B0\uD2B8 \uCEF4\uD3EC\uB10C\uD2B8\uC5D0\uC11C useLoaderData \uC744 \uD1B5\uD574\uC11C \uBC1B\uC544\uC640\uC11C \uC0AC\uC6A9\uD560\uC218 \uC788\uB2E4\r\n  const users = useLoaderData();\r\n\r\n  return (\r\n    <div>\r\n      <h1>Users</h1>\r\n      <ul>\r\n        {users.map((user) => (\r\n          <li key={user.id}>\r\n            <Link to={`/users/${user.id}`}>{user.username}</Link>\r\n          </li>\r\n        ))}\r\n      </ul>\r\n    </div>\r\n  );\r\n}"],
+  "mappings": ";;;;;;;;;;AAUM;AANS,SAAR,QAAyB;AAE9B,QAAM,QAAQ,cAAc;AAE5B,SACE,mDAAC,SACC;AAAA,uDAAC,QAAG,qBAAJ;AAAA;AAAA;AAAA;AAAA,WAAS;AAAA,IACT,mDAAC,QACE,gBAAM,IAAI,CAAC,SACV,mDAAC,QACC,6DAAC,QAAK,IAAI,UAAU,KAAK,MAAO,eAAK,YAArC;AAAA;AAAA;AAAA;AAAA,WAA8C,KADvC,KAAK,IAAd;AAAA;AAAA;AAAA;AAAA,WAEA,CACD,KALH;AAAA;AAAA;AAAA;AAAA,WAMA;AAAA,OARF;AAAA;AAAA;AAAA;AAAA,SASA;AAEJ;",
+  "names": []
+}

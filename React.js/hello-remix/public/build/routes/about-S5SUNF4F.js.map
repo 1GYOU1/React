@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:routes\\about.jsx?browser"],
+  "sourcesContent": ["export default function About() {\r\n    return <div>hello remix~!</div>;\r\n  }"],
+  "mappings": ";;;;;;AACW;AADI,SAAR,QAAyB;AAC5B,SAAO,mDAAC,SAAI,6BAAL;AAAA;AAAA;AAAA;AAAA,SAAkB;AAC3B;",
+  "names": []
+}
