@@ -757,6 +757,85 @@ function Detail() {
 
 ## #7.7 Publishing
 
-```js
+github.io 페이지에 배포하기
 
+1. 업로드할 폴더 진입
+>$ cd 폴더명
+
+2. gh-pages : github pages에 업로드 해주는 패키지 설치
+>$ npm i gh-pages
+
+package.json 파일에 있는 script 확인 
+- build 부분을 실행하면 production ready code(압축되고 최적화 된 코드)가 생성됨.
+```js
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build", //<-- 해당부분
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
 ```
+    하단 명령어를 실행하면 프로젝트 압축된 build 폴더가 생성됨. (3번에서 자동실행되도록 script 작성예정이라 명령어 실행 X.)
+>$ npm run build
+
+<br>
+
+3. github repository 연결되었는지 확인하고 package.json 파일에 하단 코드 추가
+```js
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build",//추가 - gh-pages를 실행시키고 build 디렉토리를 가져감
+    "predeploy": "npm run build"//추가 - build 다음에 deploy를 해야하는 것을 자동으로 실행하게 해줌.(predeploy가 자동으로 먼저 실행되고 npm run build 실행)
+  },
+```
+```js
+},//최하단 부분에 추가
+  "homepage": "https://1gyou1.github.io/react-for-beginners"
+}
+```
+
+<br>
+
+github 연결되었는지 확인 명령어 - 아무것도 나오지 않는다면 연결해야함.
+>$ git remote -v
+
+github 사용자이름 연결됐는지 확인
+>$ git config --global user.name
+
+github repository 연결 : https://github.com/사용자이름/레파지토리
+>$ git remote add origin https://github.com/1gyou1/react-for-beginners
+
+>$ git push -u origin master
+
+<br>
+
+4. deploy 실행시키면 predeploy를 먼저 실행시킴
+
+    predeploy는 npm run build를 실행시키고
+
+    npm run build는 react-scripts build를 실행
+
+    압축, 최적화된 코드가 들어있는 build폴더 생성되고, gh-pages -d build(gh-pages가 build 폴더를 github홈페이지에 업로드)가 실행됨.
+>$ npm run deploy
+
+5. package.json 폴더에 추가한 주소로 진입하여 확인하기.
+
+<br>
+
+** react가 업데이트 되면서 404가 뜨는 에러 발생.
+
+App.js의 하단부분을 수정하여 오류 해결.
+
+업데이트 5분 정도 걸리니 기다려보기 !
+
+```js
+<Routes basename={`${process.env.PUBLIC_URL}/`}>
+```
+
+<br>
+
+---
+
