@@ -29,7 +29,7 @@ const HookUseInput = () => {
     const name = useInput('Mr.', maxLengAndEnter);
     return (
         <div>
-            <h1>Hello</h1>
+            <h1>useState - useInput</h1>
             <input placeholder='Name' {...name}/>
                                     {/* 
                                     {...name}은 하단과 같이 쓸 수 있다.

@@ -10,8 +10,8 @@ function HookUseState() {
     const decrementItem = () => setItem(item - 1);
     return (
         <div>
-            <h1>Hello {item}</h1>
-            <h2>Start editing to see some magic happen!</h2>
+            <h1>useState</h1>
+            <h2>count : {item}</h2>
             <button onClick = {incrementItem}>incrementItem</button>
             <button onClick = {decrementItem}>decrementItem</button>
         </div>
