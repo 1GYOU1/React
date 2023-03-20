@@ -15,6 +15,7 @@ const content = [
 
 const useTabs = (initialTab, allTabs) => {
     const [currentIndex, setCurrentindex] = useState(initialTab);
+    //allTabs가 true가 아니거나 배열이 아닐 경우
     if(!allTabs || !Array.isArray(allTabs)){
         return;
     }
