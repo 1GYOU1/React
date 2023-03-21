@@ -18,7 +18,7 @@ dependency 에 아무것도 들어가있지 않음 => 페이지가 redering 될 
 import React, { useEffect, useRef } from 'react';
 
 const useClick = (onClick) => {
-	const ref = useRef();
+	const ref = useRef();//document.getElementByID()를 사용한 것과 동등하게 선택하는 역할
 	useEffect(() => {
 	const element = ref;
 	if (element.current) {
