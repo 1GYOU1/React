@@ -32,7 +32,22 @@
 // }
 
 //-----------------------------------------------------------------
-//custom hook 만들기
+
+/*
+    #2.3 useConfirm
+    custom hook,
+
+    이 코드는 useConfirmDialog라는 커스텀 훅을 만들어서 confirmAction이라는 함수를 반환합니다. 
+    이 함수는 window.confirm을 이용해서 메시지를 띄우고, 
+    확인 버튼을 눌렀을 때 callback 함수를 실행하고, 취소 버튼을 눌렀을 때 rejection 함수를 실행합니다.
+
+    HookUseConfirm 컴포넌트에서는 useConfirmDialog를 호출해서 반환받은 confirmDelete 함수를 onClick 이벤트 핸들러로 등록합니다. 
+    이 버튼을 클릭하면 confirmAction 함수가 실행되어 메시지를 띄우고, 
+    확인 버튼을 누르면 deleteWorld 함수가 실행되고, 
+    취소 버튼을 누르면 abort 함수가 실행됩니다.
+
+    따라서, HookUseConfirm 컴포넌트를 렌더링하고 "Delete the world" 버튼을 클릭하면 confirm 창이 뜨고, 확인 버튼을 누르면 "Deleting World..."이라는 메시지가 출력되고, 취소 버튼을 누르면 "Aborted"라는 메시지가 출력됩니다.
+*/
 import React from 'react';
                                         /*
                                         callback : 확인 버튼을 눌렀을 때 실행할 함수, 
