@@ -102,7 +102,7 @@ fetch('https://example.com/api/data')
 axios 라이브러리 설치
 >$ npm install axios
 
-
+### ① .then(), .catch() 사용 방식
 ```js
 import React, { useEffect, useState } from "react";
 import axios from "axios"; // axios를 import
@@ -145,6 +145,105 @@ function DictionarySearchResults() {
 export default DictionarySearchResults;
 ```
 
+### ② async/await 사용 방식
+
+```js
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
+function DictionarySearchResults() {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const apiUrl = async() => {
+      try{
+        setError(null);
+        setData(null);
+        setLoading(true);
+        const response = await axios.get(
+          "http://openapi.seoul.go.kr:8088/4b4948426b316779363375646c5141/json/SearchSTNBySubwayLineInfo/0/400/"
+        ); 
+        setData(response.data.SearchSTNBySubwayLineInfo.row)
+      } catch(error) {
+        console.error("API 요청 중 오류 발생:", error);
+      }
+      setLoading(false);
+    };
+    apiUrl();
+  }, []);
+
+  if (loading) return <div>로딩중..</div>;
+  if (error) return <div>에러가 발생했습니다</div>;
+  if (!data) return null;
+
+  return (
+    <div>
+      <h1>test</h1>
+      <ul>
+        {data.map((item) => (
+          <li key={item.STATION_CD}>
+            <h2>{item.STATION_NM}</h2>
+            <p>호선: {item.LINE_NUM}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default DictionarySearchResults;
+```
+
+<br>
+
+### ① .then(), .catch()와 ② async/await의 차이
+
+#### .then() 및 .catch() 사용
+```js
+fetch(url)
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error('API 요청 실패');
+    }
+    return response.json();
+  })
+  .then((data) => {
+    // 데이터 사용
+  })
+  .catch((error) => {
+    console.error('오류 발생:', error);
+  });
+```
+
+- .then() 및 .catch()를 사용하면 비동기 코드가 연결된 형태로 작성됩니다.
+- .then() 블록은 비동기 작업이 성공적으로 완료된 경우 실행됩니다.
+- .catch() 블록은 비동기 작업에서 오류가 발생한 경우 실행됩니다.
+
+#### async/await 사용
+```js
+async function fetchData() {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error('API 요청 실패');
+    }
+    const data = await response.json();
+    // 데이터 사용
+  } catch (error) {
+    console.error('오류 발생:', error);
+  }
+}
+```
+- async/await를 사용하면 코드가 동기적으로 보이도록 작성됩니다.
+- async 키워드가 함수에 붙고, await 키워드를 사용하여 비동기 작업을 기다릴 수 있습니다.
+- await 뒤에 나오는 비동기 함수의 결과를 기다리며, 이를 변수에 할당할 수 있습니다.
+- 코드가 선언적이고 비동기 작업의 흐름을 더 잘 이해하기 쉽게 만들 수 있습니다.
+
+#### 정리
+- async/await를 사용하면 코드가 좀 더 선언적이며, 비동기 작업의 흐름을 이해하기 쉽게 만듭니다. 따라서 일반적으로 비동기 코드를 작성할 때 async/await를 사용하는 것이 권장.
+
 <br>
 
 ### axios와 fetch의 차이
@@ -172,3 +271,9 @@ export default DictionarySearchResults;
 - **axios**: axios는 HTTP 요청에 대한 기능을 확장하거나 인터셉터(interceptor)를 사용하여 요청과 응답을 가로챌 수 있는 기능을 제공.
 
 - **fetch**: fetch는 기본적인 네트워크 요청을 제공하며, 추가 기능은 직접 구현해야함.
+
+<br>
+
+### 정리 
+
+**axios - async/await** > axios - .then(),.catch() > fetch
