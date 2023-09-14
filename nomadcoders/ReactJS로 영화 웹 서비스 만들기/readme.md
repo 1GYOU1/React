@@ -1,3 +1,23 @@
+## ReactJS로 영화 웹 서비스 만들기
+
+#### 배우는 이론
+- JSX
+- State
+- Props
+- Class Components
+- Data Fetching
+- Routing
+
+#### 패키지
+- "React"
+- "Axios"
+- "React Router"
+- "Github Pages"
+
+---
+
+<br>
+
 # __React JS__
 
 [참고사이트 ① - 벨로퍼트와 함께하는 모던 리액트](https://react.vlpt.us/)
